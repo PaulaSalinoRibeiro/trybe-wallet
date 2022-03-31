@@ -5,12 +5,16 @@ import { connect } from 'react-redux';
 import { userAction } from '../actions';
 
 function validate(email, password, func) {
-  const MIN_VALUE = 6;
+  const MIN_VALUE = 5;
   const validateEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-  const validatePassword = password.length >= MIN_VALUE;
+  const validatePassword = password.length > MIN_VALUE;
   const inputs = [validateEmail, validatePassword];
   const isValidade = inputs.every((input) => input === true);
-  if (isValidade) func(false);
+  if (isValidade) {
+    func(false);
+  } else {
+    func(true);
+  }
   // ref.: https://github.com/tryber/sd-019-c-live-lectures/blob/lecture/11.5/aula_extra/src/App.js
 }
 
