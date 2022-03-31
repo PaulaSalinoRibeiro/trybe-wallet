@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import Header from '../component/Header';
+import { currencieThunk } from '../actions';
 
-class Wallet extends React.Component {
-  render() {
-    return (
-      <Header />
-    );
-  }
+function Wallet() {
+  const dispatch = useDispatch();
+  useEffect(() => { dispatch(currencieThunk()); }, [dispatch]);
+
+  return (
+    <Header />
+  );
 }
 
 export default Wallet;

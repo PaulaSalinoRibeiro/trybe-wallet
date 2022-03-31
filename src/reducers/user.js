@@ -1,4 +1,3 @@
-// Esse reducer será responsável por tratar as informações da pessoa usuária
 import { ADD_USER } from '../actions';
 
 const INIT_STATE = {

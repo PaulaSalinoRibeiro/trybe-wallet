@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
-import { connect } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { userAction } from '../actions';
 
 function validate(email, password, func) {
@@ -18,7 +17,7 @@ function validate(email, password, func) {
   // ref.: https://github.com/tryber/sd-019-c-live-lectures/blob/lecture/11.5/aula_extra/src/App.js
 }
 
-function Login(props) {
+function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isDisabled, setIsDisabled] = useState(true);
@@ -26,8 +25,9 @@ function Login(props) {
 
   useEffect(() => { validate(email, password, setIsDisabled); }, [email, password]);
 
+  const dispatch = useDispatch();
+
   function handleClick() {
-    const { dispatch } = props;
     dispatch(userAction(email));
     history.push('/carteira');
   }
@@ -67,8 +67,4 @@ function Login(props) {
   );
 }
 
-Login.propTypes = {
-  dispatch: PropTypes.func.isRequired,
-};
-
-export default connect()(Login);
+export default Login;
