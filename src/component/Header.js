@@ -3,7 +3,9 @@ import { useSelector } from 'react-redux';
 import { GrMoney } from 'react-icons/gr';
 
 function Header() {
-  const { user: { email } } = useSelector((state) => state);
+  const { user: { email },
+  } = useSelector((state) => state);
+
   return (
     <>
       <GrMoney />

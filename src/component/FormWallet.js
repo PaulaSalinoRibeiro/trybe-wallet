@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { expensesThunk } from '../actions';
 
 function FormWallet() {
   const [value, setValue] = useState('');
   const [description, setDescription] = useState('');
-  const [moeda, setMoeda] = useState('');
+  const [currency, setCurrency] = useState('');
   const [method, setMethod] = useState('');
   const [tag, setTag] = useState('');
   const arrMethod = ['Dinheiro', 'Cartão de crédito', 'Cartão de débito'];
   const arrTga = ['Alimentação', 'Lazer', 'Trabalho', 'Transporte', 'Saúde'];
+  const dispatch = useDispatch();
 
   const { wallet: { currencies } } = useSelector((state) => state);
   return (
@@ -42,8 +44,8 @@ function FormWallet() {
         <select
           id="moeda"
           name="moeda"
-          value={ moeda }
-          onChange={ (e) => setMoeda(e.target.value) }
+          value={ currency }
+          onChange={ (e) => setCurrency(e.target.value) }
         >
           {currencies.map((e) => <option key={ e }>{e}</option>)}
         </select>
@@ -72,6 +74,15 @@ function FormWallet() {
           {arrTga.map((e) => <option key={ e }>{e}</option>)}
         </select>
       </label>
+
+      <button
+        type="button"
+        onClick={ () => dispatch(expensesThunk(
+          { value, description, currency, method, tag },
+        )) }
+      >
+        Adicionar despesa
+      </button>
     </form>
   );
 }
