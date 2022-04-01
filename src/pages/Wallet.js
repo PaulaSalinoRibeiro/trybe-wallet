@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import Header from '../component/Header';
 import FormWallet from '../component/FormWallet';
+import FormTable from '../component/FormTable';
 import { currencieThunk } from '../actions';
 
 function Wallet() {
@@ -12,6 +13,7 @@ function Wallet() {
     <>
       <Header />
       <FormWallet />
+      <FormTable />
     </>
   );
 }
