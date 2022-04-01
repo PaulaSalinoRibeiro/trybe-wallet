@@ -3,16 +3,34 @@ import { useSelector, useDispatch } from 'react-redux';
 import { expensesThunk } from '../actions';
 
 function FormWallet() {
-  const [value, setValue] = useState('');
-  const [description, setDescription] = useState('');
-  const [currency, setCurrency] = useState('USD');
-  const [method, setMethod] = useState('Dinheiro');
-  const [tag, setTag] = useState('');
-  const arrMethod = ['Dinheiro', 'Cartão de crédito', 'Cartão de débito'];
-  const arrTga = ['Alimentação', 'Lazer', 'Trabalho', 'Transporte', 'Saúde'];
+  const { wallet: { currencies, expenses } } = useSelector((state) => state);
+
   const dispatch = useDispatch();
 
-  const { wallet: { currencies } } = useSelector((state) => state);
+  const init = {
+    value: '',
+    description: '',
+    currency: 'USD',
+    method: 'Dinheiro',
+    tag: 'Alimentação',
+  };
+
+  console.log(init);
+  const [formInfo, setFormInfo] = useState(init);
+
+  const arrMethod = ['Dinheiro', 'Cartão de crédito', 'Cartão de débito'];
+  const arrTga = ['Alimentação', 'Lazer', 'Trabalho', 'Transporte', 'Saúde'];
+
+  const handleChange = (e) => {
+    const { target: { name, value } } = e;
+    setFormInfo((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleClick = () => {
+    dispatch(expensesThunk({ ...formInfo, id: expenses.length }));
+    setFormInfo(init);
+  };
+
   return (
     <form>
       <label htmlFor="value">
@@ -22,8 +40,8 @@ function FormWallet() {
           data-testid="value-input"
           type="text"
           name="value"
-          value={ value }
-          onChange={ (e) => setValue(e.target.value) }
+          value={ formInfo.value }
+          onChange={ (e) => handleChange(e) }
         />
       </label>
 
@@ -34,8 +52,8 @@ function FormWallet() {
           data-testid="description-input"
           type="text"
           name="description"
-          value={ description }
-          onChange={ (e) => setDescription(e.target.value) }
+          value={ formInfo.description }
+          onChange={ (e) => handleChange(e) }
         />
       </label>
 
@@ -43,9 +61,10 @@ function FormWallet() {
         Moeda:
         <select
           id="moeda"
-          name="moeda"
-          value={ currency }
-          onChange={ (e) => setCurrency(e.target.value) }
+          data-testid="currency-input"
+          name="currency"
+          value={ formInfo.currency }
+          onChange={ (e) => handleChange(e) }
         >
           {currencies.map((e) => <option key={ e }>{e}</option>)}
         </select>
@@ -56,8 +75,8 @@ function FormWallet() {
           id="method"
           data-testid="method-input"
           name="method"
-          value={ method }
-          onChange={ (e) => setMethod(e.target.value) }
+          value={ formInfo.method }
+          onChange={ (e) => handleChange(e) }
         >
           {arrMethod.map((e) => <option key={ e }>{e}</option>)}
         </select>
@@ -68,8 +87,8 @@ function FormWallet() {
           id="tag"
           name="tag"
           data-testid="tag-input"
-          value={ tag }
-          onChange={ (e) => setTag(e.target.value) }
+          value={ formInfo.tag }
+          onChange={ (e) => handleChange(e) }
         >
           {arrTga.map((e) => <option key={ e }>{e}</option>)}
         </select>
@@ -77,9 +96,7 @@ function FormWallet() {
 
       <button
         type="button"
-        onClick={ () => dispatch(expensesThunk(
-          { value, description, currency, method, tag },
-        )) }
+        onClick={ () => handleClick() }
       >
         Adicionar despesa
       </button>

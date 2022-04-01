@@ -17,13 +17,15 @@ function Header() {
           {email}
         </p>
 
-        <p
-          data-testid="total-field"
-        >
-          <span>Despesa total R$</span>
-          {
-            total === undefined ? 0 : total
-          }
+        <p>
+          Despesa total R$
+          <span
+            data-testid="total-field"
+          >
+            {
+              total === undefined ? 0 : total.toFixed(2)
+            }
+          </span>
         </p>
 
         <p
@@ -31,6 +33,7 @@ function Header() {
         >
           BRL
         </p>
+
       </div>
     </>
   );

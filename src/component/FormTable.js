@@ -1,8 +1,10 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { deleteAction } from '../actions';
 
 function FormTable() {
   const { wallet: { expenses } } = useSelector((state) => state);
+  const dispatch = useDispatch();
   return (
     <table>
       <thead>
@@ -34,13 +36,23 @@ function FormTable() {
                     <td>{currency}</td>
                     <td>{method}</td>
                     <td>{Number(value).toFixed(2)}</td>
-                    <td>{exchangeRates[currency].name}</td>
+                    <td>{(exchangeRates[currency].name).split('/Real Brasileiro')}</td>
                     <td>{Number(exchangeRates[currency].ask).toFixed(2)}</td>
                     <td>{(value * exchangeRates[currency].ask).toFixed(2)}</td>
                     <td>Real</td>
                     <td>
-                      <button type="button">Editar</button>
-                      <button type="button">Excluir</button>
+                      <button
+                        type="button"
+                      >
+                        Editar
+                      </button>
+                      <button
+                        type="button"
+                        data-testid="delete-btn"
+                        onClick={ () => dispatch(deleteAction(id)) }
+                      >
+                        Excluir
+                      </button>
                     </td>
                   </tr>))
               }

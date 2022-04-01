@@ -1,4 +1,4 @@
-import { ADD_CURRENCIES, ADD_EXPENSES } from '../actions';
+import { ADD_CURRENCIES, ADD_EXPENSES, DELETE_EXPENSES } from '../actions';
 
 const INIT_STATE = {
   currencies: [],
@@ -9,7 +9,6 @@ const INIT_STATE = {
 const getCurrencies = (object) => Object.keys(object).filter((e) => e !== 'USDT');
 
 const getTotal = (arr) => {
-  // console.log(arr);
   if (arr.length === 0) {
     return 0;
   }
@@ -33,6 +32,12 @@ const wallet = (state = INIT_STATE, action) => {
       ...state,
       expenses: [...state.expenses, payload],
       total: getTotal([...state.expenses, payload]),
+    };
+  case DELETE_EXPENSES:
+    return {
+      ...state,
+      expenses: state.expenses.filter((e) => e.id !== payload),
+      total: getTotal(state.expenses.filter((e) => e.id !== payload)),
     };
   default:
     return state;
