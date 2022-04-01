@@ -3,20 +3,20 @@ import { ADD_CURRENCIES, ADD_EXPENSES } from '../actions';
 const INIT_STATE = {
   currencies: [],
   expenses: [],
-  total: 0.00,
+  total: 0,
 };
 
 const getCurrencies = (object) => Object.keys(object).filter((e) => e !== 'USDT');
 
 const getTotal = (arr) => {
-  console.log(arr);
+  // console.log(arr);
   if (arr.length === 0) {
-    return 0.00;
+    return 0;
   }
   return arr.reduce((acc, e) => {
     const { value, currency, exchangeRates } = e;
     acc += Number(value) * exchangeRates[currency].ask;
-    return acc.toFixed(2);
+    return acc;
   }, 0);
 };
 

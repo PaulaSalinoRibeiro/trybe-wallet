@@ -5,8 +5,8 @@ import { expensesThunk } from '../actions';
 function FormWallet() {
   const [value, setValue] = useState('');
   const [description, setDescription] = useState('');
-  const [currency, setCurrency] = useState('');
-  const [method, setMethod] = useState('');
+  const [currency, setCurrency] = useState('USD');
+  const [method, setMethod] = useState('Dinheiro');
   const [tag, setTag] = useState('');
   const arrMethod = ['Dinheiro', 'Cartão de crédito', 'Cartão de débito'];
   const arrTga = ['Alimentação', 'Lazer', 'Trabalho', 'Transporte', 'Saúde'];
