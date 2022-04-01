@@ -22,9 +22,8 @@ function FormTable() {
       </thead>
 
       {
-        expenses.length === 0
-          ? ''
-          : (
+        expenses.length > 0
+          && (
             <tbody>
               {
                 expenses.map((
