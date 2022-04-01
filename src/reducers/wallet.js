@@ -8,7 +8,7 @@ const INIT_STATE = {
 
 const getCurrencies = (object) => Object.keys(object).filter((e) => e !== 'USDT');
 
-const getTotal = (arr) => {
+export const getTotal = (arr) => {
   if (arr.length === 0) {
     return 0;
   }

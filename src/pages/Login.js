@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { userAction } from '../actions';
+import LoginStyled from '../styles/LoginStyled';
 
 function validate(email, password, func) {
   const MIN_VALUE = 5;
@@ -33,7 +34,8 @@ function Login() {
   }
 
   return (
-    <fieldset>
+    <LoginStyled>
+
       <label htmlFor="email">
         Email:
         <input
@@ -63,7 +65,8 @@ function Login() {
       >
         Entrar
       </button>
-    </fieldset>
+
+    </LoginStyled>
   );
 }
 

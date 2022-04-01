@@ -1,14 +1,19 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { GrMoney } from 'react-icons/gr';
+import wallet from '../assets/wallet.png';
+import { getTotal } from '../reducers/wallet';
+import HeaderSytled from '../styles/HeaderStyled';
 
 function Header() {
   const { user: { email },
-    wallet: { total } } = useSelector((state) => state);
+    wallet: { expenses } } = useSelector((state) => state);
+
+  const [total, setTotal] = useState(0);
+  useEffect(() => { setTotal(getTotal(expenses)); }, [expenses]);
 
   return (
-    <>
-      <GrMoney />
+    <HeaderSytled>
+      <img src={ wallet } alt="wallet" />
       <div>
         <p
           data-testid="email-field"
@@ -22,9 +27,7 @@ function Header() {
           <span
             data-testid="total-field"
           >
-            {
-              total === undefined ? 0 : total.toFixed(2)
-            }
+            {total.toFixed(2)}
           </span>
         </p>
 
@@ -35,7 +38,7 @@ function Header() {
         </p>
 
       </div>
-    </>
+    </HeaderSytled>
   );
 }
 

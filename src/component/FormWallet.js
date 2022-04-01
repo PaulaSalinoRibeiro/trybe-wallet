@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { expensesThunk } from '../actions';
+import FormStyled from '../styles/FormStyled';
 
 function FormWallet() {
   const { wallet: { currencies, expenses } } = useSelector((state) => state);
@@ -15,7 +16,6 @@ function FormWallet() {
     tag: 'Alimentação',
   };
 
-  console.log(init);
   const [formInfo, setFormInfo] = useState(init);
 
   const arrMethod = ['Dinheiro', 'Cartão de crédito', 'Cartão de débito'];
@@ -32,7 +32,8 @@ function FormWallet() {
   };
 
   return (
-    <form>
+    <FormStyled>
+
       <label htmlFor="value">
         Valor:
         <input
@@ -71,6 +72,7 @@ function FormWallet() {
       </label>
 
       <label htmlFor="method">
+        Método de pagamento:
         <select
           id="method"
           data-testid="method-input"
@@ -83,6 +85,7 @@ function FormWallet() {
       </label>
 
       <label htmlFor="tag">
+        Categoria:
         <select
           id="tag"
           name="tag"
@@ -100,7 +103,8 @@ function FormWallet() {
       >
         Adicionar despesa
       </button>
-    </form>
+
+    </FormStyled>
   );
 }
 
