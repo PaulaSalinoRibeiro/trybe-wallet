@@ -1,28 +1,30 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { deleteAction } from '../actions';
+import TableStyled from '../styles/TableStyled';
 
-function FormTable() {
+function TableWallet() {
   const { wallet: { expenses } } = useSelector((state) => state);
   const dispatch = useDispatch();
   return (
-    <table>
-      <thead>
-        <tr>
-          <th>Descrição</th>
-          <th>Tag</th>
-          <th>Método de pagamento</th>
-          <th>Valor</th>
-          <th>Moeda</th>
-          <th>Câmbio utilizado</th>
-          <th>Valor convertido</th>
-          <th>Moeda de conversão</th>
-          <th>Editar/Excluir</th>
-        </tr>
-      </thead>
+    <TableStyled>
+      <table>
+        <thead>
+          <tr>
+            <th>Descrição</th>
+            <th>Tag</th>
+            <th>Método de pagamento</th>
+            <th>Valor</th>
+            <th>Moeda</th>
+            <th>Câmbio utilizado</th>
+            <th>Valor convertido</th>
+            <th>Moeda de conversão</th>
+            <th>Editar/Excluir</th>
+          </tr>
+        </thead>
 
-      {
-        expenses.length > 0
+        {
+          expenses.length > 0
           && (
             <tbody>
               {
@@ -32,7 +34,6 @@ function FormTable() {
                   <tr key={ id }>
                     <td>{description}</td>
                     <td>{tag}</td>
-                    <td>{currency}</td>
                     <td>{method}</td>
                     <td>{Number(value).toFixed(2)}</td>
                     <td>{(exchangeRates[currency].name).split('/Real Brasileiro')}</td>
@@ -58,10 +59,11 @@ function FormTable() {
               }
             </tbody>
           )
-      }
+        }
 
-    </table>
+      </table>
+    </TableStyled>
   );
 }
 
-export default FormTable;
+export default TableWallet;
