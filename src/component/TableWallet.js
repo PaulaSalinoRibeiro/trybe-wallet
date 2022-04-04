@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { deleteAction } from '../actions';
+import { deleteAction, editExpenseAction } from '../actions';
 import TableStyled from '../styles/TableStyled';
 
 function TableWallet() {
@@ -44,6 +44,7 @@ function TableWallet() {
                       <button
                         type="button"
                         data-testid="edit-btn"
+                        onClick={ () => dispatch(editExpenseAction(id)) }
                       >
                         Editar
                       </button>
