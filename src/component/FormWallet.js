@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { uuid } from 'uuidv4';
 import { expensesThunk } from '../actions';
 import FormStyled from '../styles/FormStyled';
 
@@ -27,7 +28,7 @@ function FormWallet() {
   };
 
   const handleClick = () => {
-    dispatch(expensesThunk({ ...formInfo, id: expenses.length }));
+    dispatch(expensesThunk({ ...formInfo, id: uuid() }));
     setFormInfo(init);
   };
 
