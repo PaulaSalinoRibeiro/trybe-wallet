@@ -1,14 +1,10 @@
 
-# Habilidades
+# Sobre
 
-- Criar um store Redux em aplicações React
+Aplicação CRUD que permite o usuário cadastrar uma despesa com um conversor de moeda 
 
-- Criar reducers no Redux em aplicações React
+# Tecnologias utilizadas
 
-- Criar actions no Redux em aplicações React
+- ReactJs
 
-- Criar dispatchers no Redux em aplicações React
-
-- Conectar Redux aos componentes React
-
-- Criar actions assíncronas na sua aplicação React que faz uso de Redux.
+- Redux
