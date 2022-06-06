@@ -6,8 +6,8 @@ Aplicação CRUD que permite o usuário cadastrar uma despesa com um conversor d
 # Tecnologias utilizadas
 
 - ReactJs
-
 - Redux
+- Redux-Thunk
 
 # Exemplo da aplicação 
 
