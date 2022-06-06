@@ -1,5 +1,5 @@
 
-# Sobre
+# O que foi desenvolvido
 
 Aplicação CRUD que permite o usuário cadastrar uma despesa com um conversor de moeda 
 
